@@ -11,7 +11,7 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 line_bot_api = LineBotApi(config.get('line-bot', 'channel_access_token'))
-hander = WebhookHandler(config.get('line-bot', 'channel_secret'))
+handler = WebhookHandler(config.get('line-bot', 'channel_secret'))
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -34,6 +34,6 @@ def echo(event):
         TextSendMessage(text=event.message.text)
     )
 
-if __mane__ == "__main__":
+if __name__ == "__main__":
     app.run()
 
