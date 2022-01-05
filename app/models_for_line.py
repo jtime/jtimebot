@@ -50,7 +50,6 @@ def reply_text(event):
             )
 
         except:
-
             pretty_text = pretty_echo(event.message.text)
             line_bot_api.reply_message(
                 event.reply_token,
