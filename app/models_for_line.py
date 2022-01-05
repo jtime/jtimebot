@@ -10,7 +10,7 @@ def istock_isch(target):
 
     url = f'https://www.istockphoto.com/photos/{target}?phrase={target}&sort=mostpopular'
     headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36'}
-    req = urllib.request.Request(rul, headers = headers)
+    req = urllib.request.Request(url, headers = headers)
     page = urllib.request.urlopen(req).read()
 
     pattern = 'src"(https://media.*?)"'
