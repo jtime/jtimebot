@@ -1,4 +1,5 @@
 from app import app, handler
+from flask import request, abort
 
 from linebot.exceptions import InvalidSignatureError
 
