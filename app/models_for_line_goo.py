@@ -1,36 +1,48 @@
-from app import line_bot_api, handler
-
-from linebot.models import event, MessageEvent, TextMessage, TextSendMessage, ImageSendMessage, TemplateSendMessage, ImageCarouselTemplate, ImageCarouselColumn, URIAction
-import random
-import urllib
 import re
+import os
+import urllib
+import random
+from linebot.models import *
+from flask import Flask, request, abort
+from linebot import LineBotApi, WebhookHandler
+from linebot.exceptions import InvalidSignatureError
 
-q_string = {'tbm':'isch', 'q':event.message.text}
+# handle text message
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    msg = event.message.text
 
-url = f'https://www.google.com/search?{urllib.parse.urlencode(q_string)}/'
-headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36'}
-req = urllib.request.Request(url, headers = headers)
-page = urllib.request.urlopen(req)
+    try:
+        img_search = {'tbm': 'isch', 'q': msg}
+        query = urllib.parse.urlencode(img_search)
+        base = "https://www.google.com/search?"
+        url = str(base + query)
 
-pattern = '"(https://encrypted-tbr0.gstatic.com[\S]*)"'
-img_list =[]
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
 
-for match in re.finditer(pattern, str(page, 'utf-8')):
-    img_list.append(match.group(0))
+        res = urllib.request.Request(url, headers=headers)
+        con = urllib.request.urlopen(res)
+        data = con.read()
 
-random_img_list = random.sample(img_list, k=5)
+        pattern = '"(https://encrypted-tbn0.gstatic.com[\S]*)"'
+        img_list = []
 
-img_template = ImageCarouselTemplate(
-    columns=[ImageCarouselColumn(image_url=url,action=URIAction(label=f'image{i}',uri=url)) for i, url in emumerate(random_img_list)]
+        for match in re.finditer(pattern, str(data, "utf-8")):
+            if len(match.group(1)) < 150:
+                img_list.append(match.group(1))
 
-)
+        random_img_url = img_list[random.randint(0, len(img_list) + 1)]
 
-line_bot_api.reply_message(
-    event.reply_token,
-    TemplateSendMessage(
-        #alt_text=f'ImageCarousel template {}'
-        template=img_template
-    )
-)
+        message = ImageSendMessage(
+            original_content_url=random_img_url,
+            preview_image_url=random_img_url
+        )
+        line_bot_api.reply_message(event.reply_token, message)
 
-
+    except:
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=event.message.text)
+        )
+        pass
