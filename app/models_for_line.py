@@ -1,25 +1,55 @@
 from app import line_bot_api, handler
+from flask import Flask, request, abort
+from linebot import LineBotApi, WebhookHandler
+from linebot.exceptions import InvalidSignatureError
 
-from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageSendMessage
+from linebot.models import *
 import random
 import urllib
 import re
+import os
 
 def istock_isch(target):
-    target = urllib.parse.quote(target)
+    # target = urllib.parse.quote(target)
+    #
+    # url = f'https://www.istockphoto.com/photos/{target}?phrase={target}&sort=mostpopular'
+    # headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36'}
+    # req = urllib.request.Request(url, headers = headers)
+    # page = urllib.request.urlopen(req).read()
+    #
+    # pattern = 'src"(https://media.*?)"'
+    # img_list =[]
+    #
+    # for match in re.finditer(pattern, str(page, 'utf-8')):
+    #     img_list.append(re.sub('amp;', '', match.group(0)))
+    #
+    # return img_list[random.randint(0, len(img_list) -1)]
 
-    url = f'https://www.istockphoto.com/photos/{target}?phrase={target}&sort=mostpopular'
-    headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36'}
-    req = urllib.request.Request(url, headers = headers)
-    page = urllib.request.urlopen(req).read()
+    img_search = {'tbm': 'isch', 'q': target}
+    query = urllib.parse.urlencode(img_search)
+    base = "https://www.google.com/search?"
+    url = str(base + query)
 
-    pattern = 'src"(https://media.*?)"'
-    img_list =[]
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
 
-    for match in re.finditer(pattern, str(page, 'utf-8')):
-        img_list.append(re.sub('amp;', '', match.group(0)))
+    res = urllib.request.Request(url, headers=headers)
+    con = urllib.request.urlopen(res)
+    data = con.read()
 
-    return img_list[random.randint(0, len(img_list) -1)]
+    pattern = '"(https://encrypted-tbn0.gstatic.com[\S]*)"'
+    img_list = []
+
+    for match in re.finditer(pattern, str(data, "utf-8")):
+        if len(match.group(1)) < 150:
+            img_list.append(match.group(1))
+
+    random_img_url = img_list[random.randint(0, len(img_list) + 1)]
+
+    message = ImageSendMessage(
+        original_content_url=random_img_url,
+        preview_image_url=random_img_url
+    )
 
 def pretty_echo(text):
 
