@@ -7,6 +7,18 @@ from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 
+def pretty_echo(text):
+
+    pretty_note = 'xxxxx'
+    pretty_text = ''
+
+    for i in text:
+        pretty_text += i
+        pretty_text += f"{random.choice(pretty_note)}"
+
+    return pretty_text
+
+
 # handle text message
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -41,8 +53,8 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, message)
 
     except:
+        pretty_text = pretty_echo(event.message.text)
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=event.message.text)
+            TextSendMessage(text=pretty_text)
         )
-        pass
