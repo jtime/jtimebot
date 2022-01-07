@@ -3,6 +3,7 @@ import os
 import urllib
 import random
 from linebot.models import *
+from app import line_bot_api, handler
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
