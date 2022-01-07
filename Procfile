@@ -1,1 +1,1 @@
-web: gunicorn Phoebe:app --preload
+web: gunicorn xxx:app --preload
