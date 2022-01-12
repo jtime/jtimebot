@@ -2,4 +2,4 @@ Flask
 gunicorn
 line-bot-sdk
 apscheduler
-ssl
+openssl
