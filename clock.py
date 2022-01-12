@@ -1,8 +1,11 @@
 import datetime
 from apscheduler.schedulers.blocking import BlockingScheduler
+import ssl
 import urllib.request
 
+ssl.match_hostname = lambda cert, hostname: True
 sched = BlockingScheduler()
+
 
 # @sched.scheduled_job('interval', minutes = 3)
 # def timed_job():
