@@ -1,5 +1,5 @@
 Flask
 gunicorn
 line-bot-sdk
-apscheduler
+APScheduler
 requests
