@@ -9,7 +9,7 @@ def insert(record_list):
 
     cursor.executemany(postgres_insert_query, record_list)
     conn.commit()
-    result = f"恭喜你，{cursor.rowcount}筆資料成功匯入 alpaca_training 表單 !")
+    result = f"恭喜你，{cursor.rowcount}筆資料成功匯入 alpaca_training 表單 !"
 
     print(result)
 
