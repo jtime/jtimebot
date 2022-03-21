@@ -32,7 +32,7 @@ def scheduled_job():
     print(f"{datetime.datetime.now().ctime()}")
     print("===============APScheduler CORN=========================")
     print("===============APScheduler CORN=========================")
-    
+
     url = "https://jtimebot.herokuapp.com/"
     conn = urllib.request.urlopen(url)
 

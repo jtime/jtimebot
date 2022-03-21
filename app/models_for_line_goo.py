@@ -7,22 +7,46 @@ from app import line_bot_api, handler
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
+from app import handler
+from app.custom_models import PhoebeTalks
 
-def pretty_echo(text):
-
-    pretty_note = 'xxxxx'
-    pretty_text = ''
-
-    for i in text:
-        pretty_text += i
-        pretty_text += f"{random.choice(pretty_note)}"
-
-    return pretty_text
+# def pretty_echo(text):
+#
+#     pretty_note = 'xxxxx'
+#     pretty_text = ''
+#
+#     for i in event.message.text:
+#         pretty_text += i
+#         pretty_text += f"{random.choice(pretty_note)}"
+#
+#     line_bot_api.reply_message(
+#         event.reply_token,
+#         TextSendMessage(text=pretty_text)
+#     )
+#
+#     return True
 
 
 # handle text message
 @handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
+def reply_text(event):
+    if event.source.user_id != "UDSAFDSAFKJDLKSAJFDKLSJ;AFKDLS;JAF;":
+        reply = False
+
+        if not reply:
+            reply = PhoebeTalks.pretty_echo(event)
+
+        if not reply:
+            reply = goo_message(event)
+
+        if not reply:
+            reply = PhoebeTalks.insert_record(event)
+
+
+
+
+
+def goo_message(event): #goo_photo
     msg = event.message.text
 
     try:
@@ -52,10 +76,13 @@ def handle_message(event):
             preview_image_url=random_img_url
         )
         line_bot_api.reply_message(event.reply_token, message)
+        return True
 
     except:
-        pretty_text = pretty_echo(event.message.text)
+        pretty_text = PhoebeTalks.pretty_echo(event.message.text)
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=pretty_text)
         )
+        return False
+
