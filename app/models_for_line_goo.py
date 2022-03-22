@@ -32,6 +32,7 @@ from app.custom_models import PhoebeTalks
 def reply_text(event):
     if event.source.user_id != "UDSAFDSAFKJDLKSAJFDKLSJ;AFKDLS;JAF;":
         reply = False
+
         if not reply:
             reply = PhoebeTalks.insert_record(event)
 
