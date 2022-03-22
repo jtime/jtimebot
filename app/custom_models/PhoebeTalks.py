@@ -23,10 +23,10 @@ def pretty_echo(event):
 
 def insert_record(event):
     if '草泥馬訓練紀錄' in event.message.text:
+        print("yes==========================")
         try:
             record_list = utils.prepare_record(event.message.text)
             result = CallDatabase.insert(record_list)
-
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=result)

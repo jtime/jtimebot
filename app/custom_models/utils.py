@@ -3,32 +3,25 @@ import urllib
 import re
 import datetime
 
+
 def prepare_record(text):
     text_list = text.split('\n')
-
     month = text_list[0].split(' ')[0].split('/')[0]
     day = text_list[0].split(' ')[0].split('/')[1]
     year = text_list[0].split(' ')[0].split('/')[2]
     d = datetime.date(int(year), int(month), int(day))
-
     record_list = []
-
     time_format = '%H:%M'
-
     for i in text_list[1:]:
         items = i.split(' ')
-
         name = items[0]
         training = items[1]
-
         start = datetime.datetime.strptime(items[2].split('-')[0], time_format)
         end = datetime.datetime.strptime(items[2].split('-')[1], time_format)
         duration = end - start
-
         record = (name, training, duration, d)
         record_list.append(record)
     print("=======================utils_prepare_record_ok====================")
-
     return record_list
 
 # def goo_isch(target):
