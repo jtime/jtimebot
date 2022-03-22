@@ -3,7 +3,6 @@ import urllib
 import re
 import datetime
 
-
 def prepare_record(text):
     text_list = text.split('\n')
 
@@ -28,6 +27,7 @@ def prepare_record(text):
 
         record = (name, training, duration, d)
         record_list.append(record)
+    print("=======================utils_prepare_record_ok====================")
 
     return record_list
 

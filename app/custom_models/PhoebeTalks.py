@@ -27,13 +27,11 @@ def insert_record(event):
             record_list = utils.prepare_record(event.message.text)
             result = CallDatabase.insert(record_list)
 
-
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=result)
             )
             return True
-
         except:
             line_bot_api.reply_message(
                 event.reply_token,
