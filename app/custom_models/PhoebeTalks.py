@@ -22,6 +22,7 @@ def pretty_echo(event):
     return True
 
 def insert_record(event):
+
     if '草泥馬訓練紀錄' in event.message.text:
         print("yes==========================")
         try:

@@ -31,6 +31,7 @@ from app.custom_models import PhoebeTalks
 @handler.add(MessageEvent, message=TextMessage)
 def reply_text(event):
     if event.source.user_id != "UDSAFDSAFKJDLKSAJFDKLSJ;AFKDLS;JAF;":
+
         reply = False
 
         if not reply:
