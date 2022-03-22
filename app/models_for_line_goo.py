@@ -32,6 +32,8 @@ from app.custom_models import PhoebeTalks
 def reply_text(event):
     if event.source.user_id != "UDSAFDSAFKJDLKSAJFDKLSJ;AFKDLS;JAF;":
         reply = False
+        if not reply:
+            reply = PhoebeTalks.insert_record(event)
 
         if not reply:
             reply = PhoebeTalks.pretty_echo(event)
@@ -39,8 +41,7 @@ def reply_text(event):
         # if not reply:
         #     reply = goo_message(event)
 
-        if not reply:
-            reply = PhoebeTalks.insert_record(event)
+
 
 
 
