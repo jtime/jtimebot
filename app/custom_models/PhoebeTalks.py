@@ -25,7 +25,7 @@ def insert_record(event):
     if '草泥馬訓練紀錄' in event.message.text:
         try:
             record_list = utils.prepare_record(event.message.text)
-            fesult = CallDatabase.insert_record(record_list)
+            result = CallDatabase.insert_record(record_list)
 
             line_bot_api.reply_message(
                 event.reply_token,
