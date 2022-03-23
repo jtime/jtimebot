@@ -34,6 +34,7 @@ def insert_record(event):
             )
             return True
         except:
+            print("insert_record except")
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text="失敗了")
