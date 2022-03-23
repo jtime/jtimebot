@@ -28,20 +28,39 @@ from app.custom_models import PhoebeTalks
 
 
 # handle text message
+# @handler.add(MessageEvent, message=TextMessage)
+# def reply_text(event):
+#     if event.source.user_id != "UDSAFDSAFKJDLKSAJFDKLSJ;AFKDLS;JAF;":
+#
+#         reply = False
+#
+#         if not reply:
+#             reply = PhoebeTalks.insert_record(event)
+#
+#         if not reply:
+#             reply = PhoebeTalks.pretty_echo(event)
+#
+#         # if not reply:
+#         #     reply = goo_message(event)
+
+
 @handler.add(MessageEvent, message=TextMessage)
-def reply_text(event):
-    if event.source.user_id != "UDSAFDSAFKJDLKSAJFDKLSJ;AFKDLS;JAF;":
+def reply_text_message(event):
+    if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
 
         reply = False
 
         if not reply:
             reply = PhoebeTalks.insert_record(event)
 
+        # if not reply:
+        #     reply = PhoebeTalks.img_search(event)
+        #
+        # if not reply:
+        #     reply = PhoebeTalks.img_search(event)
+
         if not reply:
             reply = PhoebeTalks.pretty_echo(event)
-
-        # if not reply:
-        #     reply = goo_message(event)
 
 
 

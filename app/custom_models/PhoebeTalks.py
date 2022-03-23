@@ -32,12 +32,14 @@ def insert_record(event):
                 event.reply_token,
                 TextSendMessage(text=result)
             )
-            return True
+
+
         except:
             print("insert_record except")
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text="失敗了")
             )
+        return True
     else:
         return False
