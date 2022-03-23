@@ -18,7 +18,7 @@ def prepare_record(text):
         name = items[0]
         print(name)
         training = items[1]
-        print(items[2])
+        print(d)
         start = datetime.datetime.strptime(items[2].split('-')[0], time_format)
         print(start)
         end = datetime.datetime.strptime(items[2].split('-')[1], time_format)
