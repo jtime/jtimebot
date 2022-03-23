@@ -5,6 +5,7 @@ import datetime
 
 
 def prepare_record(text):
+    print(f"prepare_record{text}")
     text_list = text.split('\n')
     month = text_list[0].split(' ')[0].split('/')[0]
     day = text_list[0].split(' ')[0].split('/')[1]

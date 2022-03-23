@@ -27,10 +27,9 @@ def insert_record(event):
         print("yes==========================")
         try:
             print(event.message.text)
-            aa = utils.prepare_record(event.message.text)
-            #record_list = utils.prepare_record(event.message.text)
-            print(aa)
-            result = CallDatabase.insert(aa)
+
+            record_list = utils.prepare_record(event.message.text)
+            result = CallDatabase.insert(record_list)
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=result)
