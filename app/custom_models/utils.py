@@ -22,6 +22,7 @@ def prepare_record(text):
         start = datetime.datetime.strptime(items[2].split('-')[0], time_format)
         end = datetime.datetime.strptime(items[2].split('-')[1], time_format)
         duration = end - start
+        print(duration, d)
         record = (name, training, duration, d)
         record_list.append(record)
     print("=======================utils_prepare_record_ok====================")
