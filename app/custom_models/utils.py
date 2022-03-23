@@ -4,31 +4,61 @@ import re
 import datetime
 
 
+# def prepare_record(text):
+#     print(f"prepare_record{text}")
+#     text_list = text.split('\n')
+#     month = text_list[0].split(' ')[0].split('/')[0]
+#     day = text_list[0].split(' ')[0].split('/')[1]
+#     year = text_list[0].split(' ')[0].split('/')[2]
+#     d = datetime.date(int(year), int(month), int(day))
+#     record_list = []
+#     time_format = '%H:%M'
+#     for i in text_list[1:]:
+#         items = i.split(' ')
+#         name = items[0]
+#         print(name)
+#         training = items[1]
+#         print(d)
+#         start = datetime.datetime.strptime(items[2].split('-')[0], time_format)
+#         temp_st datetime.datetime.strptime(temp_[2].split('-')[0], time_format)
+#         print(start)
+#         end = datetime.datetime.strptime(items[2].split('-')[1], time_format)
+#         print(end)
+#         duration = end - start
+#         print(duration, d)
+#         record = (name, training, duration, d)
+#         record_list.append(record)
+#     print("=======================utils_prepare_record_ok====================")
+#     return record_list
+
 def prepare_record(text):
-    print(f"prepare_record{text}")
     text_list = text.split('\n')
+
     month = text_list[0].split(' ')[0].split('/')[0]
     day = text_list[0].split(' ')[0].split('/')[1]
-    year = text_list[0].split(' ')[0].split('/')[2]
-    d = datetime.date(int(year), int(month), int(day))
+    d = datetime.date(datetime.date.today().year, int(month), int(day))
+
     record_list = []
+
     time_format = '%H:%M'
+
     for i in text_list[1:]:
-        items = i.split(' ')
-        name = items[0]
-        print(name)
-        training = items[1]
-        print(d)
-        start = datetime.datetime.strptime(items[2].split('-')[0], time_format)
-        print(start)
-        end = datetime.datetime.strptime(items[2].split('-')[1], time_format)
-        print(end)
-        duration = end - start
-        print(duration, d)
-        record = (name, training, duration, d)
+        temp_list = i.split(' ')
+
+        temp_name = temp_list[0]
+        temp_training = temp_list[1]
+
+        temp_start = datetime.datetime.strptime(temp_list[2].split('-')[0], time_format)
+        print(temp_start)
+        temp_end = datetime.datetime.strptime(temp_list[2].split('-')[1], time_format)
+        print(temp_end)
+        temp_duration = temp_end - temp_start
+
+        record = (temp_name, temp_training, temp_duration, d)
         record_list.append(record)
-    print("=======================utils_prepare_record_ok====================")
+
     return record_list
+
 
 # def goo_isch(target):
 #     target = urllib.parse.quote(target)
