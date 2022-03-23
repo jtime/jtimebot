@@ -47,6 +47,8 @@ def prepare_record(text):
 
         temp_name = temp_list[0]
         temp_training = temp_list[1]
+        start = temp_list[2].split('-')[0]
+        print(start)
 
         temp_start = datetime.datetime.strptime(temp_list[2].split('-')[0], time_format)
         print(temp_start)
