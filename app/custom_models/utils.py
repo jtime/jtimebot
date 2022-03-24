@@ -28,7 +28,7 @@ def prepare_record(text):
 
         start1 = items[2].split('-')[0]
         print(start1)
-        start = datetime.datetime.strptime(items[2].split('-')[0], time_format)
+        start = datetime.strptime(items[2].split('-')[0], time_format)
         print(start)
         end = datetime.datetime.strptime(items[2].split('-')[1], time_format)
         print(end)
