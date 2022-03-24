@@ -30,8 +30,8 @@ def prepare_record(text):
         start1 = items[2].split('-')[0]
         print(type(start1))
         #start = dd.strptime(items[2].split('-')[0], time_format)
-        start = dd.datetime.strptime(start1,time_format)
-        print(start1)
+        start = dd.datetime.strptime(start1, time_format)
+        print(start)
 
         end = dd.datetime.strptime(items[2].split('-')[1], time_format)
         print(end)
