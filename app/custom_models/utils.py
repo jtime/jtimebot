@@ -13,11 +13,17 @@ def prepare_record(text):
     d = datetime.date(int(year), int(month), int(day))
     record_list = []
     time_format = '%H:%M'
+
     for i in text_list[1:]:
         items = i.split(' ')
         name = items[0]
         print(name)
         training = items[1]
+        
+        aa = "09:00"
+        startaa = datetime.datetime.strptime(aa, time_format)
+        print(startaa)
+
         start1 = items[2].split('-')[0]
         print(start1)
         start = datetime.datetime.strptime(items[2].split('-')[0], time_format)
@@ -30,36 +36,6 @@ def prepare_record(text):
         record_list.append(record)
     print("=======================utils_prepare_record_ok====================")
     return record_list
-
-# def prepare_record(text):
-#     text_list = text.split('\n')
-#
-#     month = text_list[0].split(' ')[0].split('/')[0]
-#     day = text_list[0].split(' ')[0].split('/')[1]
-#     d = datetime.date(datetime.date.today().year, int(month), int(day))
-#
-#     record_list = []
-#
-#     time_format = '%H:%M'
-#
-#     for i in text_list[1:]:
-#         temp_list = i.split(' ')
-#
-#         temp_name = temp_list[0]
-#         temp_training = temp_list[1]
-#         start = temp_list[2].split('-')[0]
-#         print(start)
-#
-#         temp_start = datetime.datetime.strptime(temp_list[2].split('-')[0], time_format)
-#         print(temp_start)
-#         temp_end = datetime.datetime.strptime(temp_list[2].split('-')[1], time_format)
-#         print(temp_end)
-#         temp_duration = temp_end - temp_start
-#
-#         record = (temp_name, temp_training, temp_duration, d)
-#         record_list.append(record)
-#
-#     return record_list
 
 
 # def goo_isch(target):
