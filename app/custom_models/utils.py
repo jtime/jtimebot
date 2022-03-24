@@ -17,6 +17,7 @@ def prepare_record(text):
 
     for i in text_list[1:]:
         items = i.split(' ')
+        print(items)
         name = items[0]
         print(name)
         training = items[1]
