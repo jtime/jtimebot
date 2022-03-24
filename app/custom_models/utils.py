@@ -19,7 +19,7 @@ def prepare_record(text):
         name = items[0]
         print(name)
         training = items[1]
-        
+
         aa = "09:00"
         startaa = datetime.datetime.strptime(aa, time_format)
         print(startaa)
