@@ -32,7 +32,7 @@ def prepare_record(text):
         startbb = dd.datetime.strptime(bb, time_format)
         print(type(startbb))
 
-        duration = bb - aa
+        duration = startbb - startaa
         print(duration)
 
         # start1 = items[2].split('-')[0]
