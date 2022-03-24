@@ -23,12 +23,12 @@ def prepare_record(text):
         training = items[1]
 
         aa = "09:00"
-        print("aa" + type(aa))
+        print(type(aa))
         startaa = dd.datetime.strptime(aa, time_format)
-        print(startaa + type(startaa))
+        print(type(startaa))
 
         start1 = items[2].split('-')[0]
-        print(start1 + type(start1))
+        print(type(start1))
         #start = dd.strptime(items[2].split('-')[0], time_format)
         start = dd.datetime.strptime(start1,time_format)
         print(start1)
