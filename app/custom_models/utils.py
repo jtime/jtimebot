@@ -1,7 +1,7 @@
 import random
 import urllib
 import re
-import datetime
+import datetime as dd
 
 
 def prepare_record(text):
@@ -11,7 +11,7 @@ def prepare_record(text):
     month = text_list[0].split(' ')[0].split('/')[0]
     day = text_list[0].split(' ')[0].split('/')[1]
     year = text_list[0].split(' ')[0].split('/')[2]
-    d = datetime.date(int(year), int(month), int(day))
+    d = dd.date(int(year), int(month), int(day))
     record_list = []
     time_format = '%H:%M'
 
@@ -23,14 +23,16 @@ def prepare_record(text):
         training = items[1]
 
         aa = "09:00"
-        startaa = datetime.datetime.strptime(aa, time_format)
+        startaa = dd.datetime.strptime(aa, time_format)
         print(startaa)
 
         start1 = items[2].split('-')[0]
         print(start1)
-        start = datetime.strptime(items[2].split('-')[0], time_format)
-        print(start)
-        end = datetime.datetime.strptime(items[2].split('-')[1], time_format)
+        #start = dd.strptime(items[2].split('-')[0], time_format)
+        start = dd.datetime.strptime(start1,time_format)
+        print(start1)
+
+        end = dd.datetime.strptime(items[2].split('-')[1], time_format)
         print(end)
         duration = end - start
         print(duration, d)
