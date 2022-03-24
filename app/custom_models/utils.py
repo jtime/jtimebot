@@ -27,15 +27,23 @@ def prepare_record(text):
         startaa = dd.datetime.strptime(aa, time_format)
         print(type(startaa))
 
-        start1 = items[2].split('-')[0]
-        print(type(start1))
-        #start = dd.strptime(items[2].split('-')[0], time_format)
-        start = dd.datetime.strptime(start1, time_format)
-        print(start)
+        bb = "10:37"
+        print(type(bb))
+        startbb = dd.datetime.strptime(bb, time_format)
+        print(type(startbb))
 
-        end = dd.datetime.strptime(items[2].split('-')[1], time_format)
-        print(end)
-        duration = end - start
+        duration = bb - aa
+        print(duration)
+
+        # start1 = items[2].split('-')[0]
+        # print(type(start1))
+        # #start = dd.strptime(items[2].split('-')[0], time_format)
+        # start = dd.datetime.strptime(start1, time_format)
+        # print(start)
+        #
+        # end = dd.datetime.strptime(items[2].split('-')[1], time_format)
+        # print(end)
+        # duration = end - start
         print(duration, d)
         record = (name, training, duration, d)
         record_list.append(record)
