@@ -53,6 +53,9 @@ def reply_text_message(event):
         if not reply:
             reply = PhoebeTalks.insert_record(event)
 
+        if not reply:
+            reply = PhoebeTalks.query_record(event)
+
         # if not reply:
         #     reply = PhoebeTalks.img_search(event)
         #

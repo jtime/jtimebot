@@ -1,8 +1,6 @@
 
 from app import line_bot_api
-from app.custom_models import utils, CallDatabase,PhoebeFlex
-
-
+from app.custom_models import utils, CallDatabase, PhoebeFlex
 from linebot.models import *
 import random
 
