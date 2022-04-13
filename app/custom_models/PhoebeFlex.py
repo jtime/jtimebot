@@ -1,16 +1,17 @@
 def image_in_FlexMessage(url):
-    return {"type" : "image",
-            "url" : url,
-            "size" : "full",
-            "aspect_ratio" : "20:13",
-            "aspect_mode" : "cover"}
+    return {"type": "image",
+            "url": url,
+            "size": "full",
+            "aspect_ratio": "20:13",
+            "aspect_mode": "cover"}
 
 def text_in_FlexMessage(text, size, color, weight="regular", wrap=False):
-    return {"type" : "text",
-            "size" : size,
-            "color" : color,
-            "weight" : weight,
-            "wrap" : wrap}
+    return {"type": "text",
+            "text": text,
+            "size": size,
+            "color": color,
+            "weight": weight,
+            "wrap": wrap}
 
 def logo_in_FlexMessage(text="PhoebeFlex"):
     return text_in_FlexMessage(text, size='md', color='#066BAF', weight='bold')
@@ -28,16 +29,16 @@ def separator_in_FlexMessage(margin= 'xl'):
     return {"type": "separator", "margin": margin}
 
 def button_in_FlexMessage(label, data, display_text):
-    return {"type" : "button",
-            "action" : {
-                "type" : "postback",
-                "label" : label,
-                "data" : data,
-                "display_text" : display_text
+    return {"type": "button",
+            "action": {
+                "type": "postback",
+                "label": label,
+                "data": data,
+                "display_text": display_text
             },
-            "style" : "link",
-            "color" : "#066BAF",
-            "height" : "sm"}
+            "style": "link",
+            "color": "#066BAF",
+            "height": "sm"}
 
 def index_Flexmessage():
     hero_image_url = "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png"
@@ -51,7 +52,7 @@ def index_Flexmessage():
                      separator_in_FlexMessage()]
 
     footer_contents = [button_in_FlexMessage('Overall', 'Overall', 'Overall'),
-                       button_in_FlexMessage('alpaca_name', 'alpaca_name','alpaca_name')]
+                       button_in_FlexMessage('alpaca_name', 'alpaca_name', 'alpaca_name')]
 
     FlexMessage = {'type': 'bubble',
                    'hero': image_in_FlexMessage(hero_image_url),
