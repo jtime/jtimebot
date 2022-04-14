@@ -9,7 +9,7 @@ from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from app import handler
 from app.custom_models import PhoebeTalks
-##test
+##test connact git
 
 # def pretty_echo(text):
 #
